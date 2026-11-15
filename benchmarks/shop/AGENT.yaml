@@ -1,0 +1,73 @@
+max_workers: 4
+
+agents:
+  researcher:
+    provider:
+      base_url: http://192.168.50.236:8080/v1
+      api_key: none
+      model: Qwen3-Coder-Next IQ2_M
+      temperature: 0.2
+    tools:
+      - bash
+      - read
+    max_iterations: 10
+
+  implementer:
+    provider:
+      base_url: http://192.168.50.236:8080/v1
+      api_key: none
+      model: Qwen3-Coder-Next IQ2_M
+      temperature: 0.2
+    tools:
+    - read
+    - append
+    - patch
+    - load_skill
+    - bash
+    skills:
+    - sqlite-implementing
+    - service-implementing
+    - fastapi-router
+    max_iterations: 30
+
+  tester:
+    provider:
+      base_url: http://192.168.50.236:8080/v1
+      api_key: none
+      model: Qwen3-Coder-Next IQ2_M
+      temperature: 0.2
+    tools:
+    - append
+    - load_skill
+    - bash
+    - read
+    skills:
+    - sqlite-testing
+    - testing-with-mocks
+    - fastapi-router-testing
+    max_iterations: 15
+
+  fixer:
+    provider:
+      base_url: http://192.168.50.236:8080/v1
+      api_key: none
+      model: Qwen3-Coder-Next IQ2_M
+      temperature: 0.2
+    tools:
+    - bash
+    - read
+    - patch
+    - load_skill
+    skills:
+    - sqlite-implementing
+    - service-implementing
+    - fastapi-router
+    max_iterations: 10
+
+  task_builder:
+    provider:
+      base_url: http://192.168.50.236:8080/v1
+      api_key: none
+      model: Qwen3-Coder-Next IQ2_M
+      temperature: 0.2
+    max_iterations: 10
